@@ -1,10 +1,13 @@
 #include "fibonacci.hpp"
 
+#include <stdexcept>
+
 int fibonacci(int n)
 {
-    if (n == 3)
+    if (n == -1)
     {
-        return 2;
+        throw std::invalid_argument{"Litości..."};
     }
-    return 1;
+
+    return n == 3 ? 2 : 1;
 }

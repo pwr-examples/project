@@ -1,5 +1,5 @@
-#include "texts.hpp"
 #include "fibonacci.hpp"
+#include "texts.hpp"
 
 #include <iostream>
 
@@ -9,4 +9,3 @@ int main()
     std::cout << "fib(1) = " << fibonacci(1) << std::endl;
     return 0;
 }
-

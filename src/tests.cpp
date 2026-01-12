@@ -2,7 +2,7 @@
 
 #include "fibonacci.hpp"
 
-using Element = int;
+using Element       = int;
 using ExpectedValue = int;
 
 struct Params
@@ -11,22 +11,22 @@ struct Params
     ExpectedValue value;
 };
 
-struct FibonacciParamTests : testing::Test, testing::WithParamInterface<Params> {};
+struct FibonacciParamTests
+    : testing::Test
+    , testing::WithParamInterface<Params>
+{
+};
 
 TEST_P(FibonacciParamTests, verifyElementValue)
 {
     ASSERT_EQ(fibonacci(GetParam().element), GetParam().value);
 }
 
-INSTANTIATE_TEST_SUITE_P(
-    FibonacciParamTests,
-    FibonacciParamTests,
-    testing::Values(
-            Params{ Element{ 1 }, ExpectedValue{ 1 }  },
-            Params{ Element{ 3 }, ExpectedValue{ 2 }  },
-            Params{ Element{ 7 }, ExpectedValue{ 13 } }
-    )
-);
+INSTANTIATE_TEST_SUITE_P(FibonacciParamTests,
+                         FibonacciParamTests,
+                         testing::Values(Params{Element{1}, ExpectedValue{1}},
+                                         Params{Element{3}, ExpectedValue{2}},
+                                         Params{Element{7}, ExpectedValue{13}}));
 
 TEST(FibonacciTests, shouldThrowExceptionInvalidParameters)
 {
@@ -34,4 +34,3 @@ TEST(FibonacciTests, shouldThrowExceptionInvalidParameters)
     EXPECT_THROW(fibonacci(-1), std::invalid_argument);
     EXPECT_THROW(fibonacci(std::numeric_limits<int>::min()), std::invalid_argument);
 }
-

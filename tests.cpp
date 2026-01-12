@@ -12,7 +12,9 @@ TEST(FibonacciTests, thirdElementShouldEqualTwo)
     ASSERT_EQ(fibonacci(3), 2);
 }
 
-TEST(FibonacciTests, shouldNieWiemJeszczeCoForInvalidParameters)
+TEST(FibonacciTests, shouldThrowExceptionInvalidParameters)
 {
+    EXPECT_THROW(fibonacci(0), std::invalid_argument);
     EXPECT_THROW(fibonacci(-1), std::invalid_argument);
+    EXPECT_THROW(fibonacci(std::numeric_limits<int>::min()), std::invalid_argument);
 }

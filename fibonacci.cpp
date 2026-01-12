@@ -4,7 +4,7 @@
 
 int fibonacci(int n)
 {
-    if (n == -1)
+    if (n <= 0)
     {
         throw std::invalid_argument{"Litości..."};
     }

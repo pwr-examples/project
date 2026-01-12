@@ -2,20 +2,31 @@
 
 #include "fibonacci.hpp"
 
-TEST(FibonacciTests, firstElementShouldBeOne)
+using Element = int;
+using ExpectedValue = int;
+
+struct Params
 {
-    ASSERT_EQ(fibonacci(1), 1);
+    Element element;
+    ExpectedValue value;
+};
+
+struct FibonacciParamTests : testing::Test, testing::WithParamInterface<Params> {};
+
+TEST_P(FibonacciParamTests, verifyElementValue)
+{
+    ASSERT_EQ(fibonacci(GetParam().element), GetParam().value);
 }
 
-TEST(FibonacciTests, thirdElementShouldEqualTwo)
-{
-    ASSERT_EQ(fibonacci(3), 2);
-}
-
-TEST(FibonacciTests, seventhElementShouldEqualThirteen)
-{
-    ASSERT_EQ(fibonacci(7), 13);
-}
+INSTANTIATE_TEST_SUITE_P(
+    FibonacciParamTests,
+    FibonacciParamTests,
+    testing::Values(
+            Params{ Element{ 1 }, ExpectedValue{ 1 }  },
+            Params{ Element{ 3 }, ExpectedValue{ 2 }  },
+            Params{ Element{ 7 }, ExpectedValue{ 13 } }
+    )
+);
 
 TEST(FibonacciTests, shouldThrowExceptionInvalidParameters)
 {

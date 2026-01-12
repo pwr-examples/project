@@ -9,5 +9,10 @@ int fibonacci(int n)
         throw std::invalid_argument{"Litości..."};
     }
 
-    return n == 3 ? 2 : 1;
+    if (n == 1 or n == 2)
+    {
+         return 1;
+    }
+
+    return fibonacci(n - 1) + fibonacci(n - 2);
 }

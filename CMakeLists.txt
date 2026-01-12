@@ -11,13 +11,13 @@ FetchContent_MakeAvailable(googletest)
 
 add_library(
     fibonacci
-    fibonacci.cpp
+    src/fibonacci.cpp
 )
 
 add_executable(
     program
-    main.cpp
-    texts.cpp
+    src/main.cpp
+    src/texts.cpp
 )
 
 target_link_libraries(
@@ -29,7 +29,7 @@ enable_testing()
 
 add_executable(
     tests
-    tests.cpp
+    src/tests.cpp
 )
 
 target_link_libraries(
